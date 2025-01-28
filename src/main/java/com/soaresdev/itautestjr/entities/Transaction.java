@@ -40,4 +40,13 @@ public class Transaction {
     public int hashCode() {
         return Objects.hash(amount, dataHour);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Transaction{");
+        sb.append("amount = ").append(amount);
+        sb.append(", dataHour = ").append(dataHour);
+        sb.append('}');
+        return sb.toString();
+    }
 }
