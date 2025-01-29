@@ -8,6 +8,9 @@ public class Transaction {
     private BigDecimal amount;
     private OffsetDateTime dataHour;
 
+    public Transaction() {
+    }
+
     public Transaction(BigDecimal amount, OffsetDateTime dataHour) {
         this.amount = amount;
         this.dataHour = dataHour;
