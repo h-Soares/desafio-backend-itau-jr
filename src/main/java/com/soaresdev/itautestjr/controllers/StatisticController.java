@@ -27,7 +27,6 @@ public class StatisticController {
     @Operation(description = "Get a summary of transactions that occurred in the last specified seconds", method = "GET")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "400", description = "Bad request", content = @Content()),
             @ApiResponse(responseCode = "422", description = "Unprocessable entity", content = @Content())
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
