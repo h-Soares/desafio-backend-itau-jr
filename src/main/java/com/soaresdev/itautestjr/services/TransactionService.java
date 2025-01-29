@@ -35,10 +35,15 @@ public class TransactionService {
 
         logger.info("dataHour to UTC: {}", transactionDtoDateHourUtc);
 
-        if(transactionDtoDateHourUtc.isAfter(OffsetDateTime.now(ZoneOffset.UTC)))
+        if(transactionDtoDateHourUtc.isAfter(OffsetDateTime.now(ZoneOffset.UTC))){
+            logger.error("ERROR: Date and hour cannot be after now");
             throw new DateTimeAfterNowException("Date and hour cannot be after now");
-        if(transactionDto.getAmount().compareTo(BigDecimal.ZERO) < 0)
+        }
+
+        if(transactionDto.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+            logger.error("ERROR: Amount cannot be negative");
             throw new NegativeAmountException("Amount cannot be negative");
+        }
 
         Transaction transaction = new Transaction(transactionDto.getAmount(), transactionDtoDateHourUtc);
         transactions.add(transaction);
@@ -60,8 +65,10 @@ public class TransactionService {
         logger.info("Calculating statistics");
         long start = System.nanoTime();
 
-        if(seconds < 0)
+        if(seconds < 0) {
+            logger.error("ERROR: Seconds cannot be negative");
             throw new IllegalArgumentException("Seconds cannot be negative");
+        }
 
         DoubleSummaryStatistics statistics = transactions.stream().
                 filter(t -> Duration.between(t.getDataHour(), OffsetDateTime.now(ZoneOffset.UTC)).toSeconds() <= seconds).
