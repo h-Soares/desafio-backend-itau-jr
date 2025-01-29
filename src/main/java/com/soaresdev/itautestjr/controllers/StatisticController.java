@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ public class StatisticController {
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content()),
             @ApiResponse(responseCode = "422", description = "Unprocessable entity", content = @Content())
     })
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StatisticsDto> calculateStatistics(@RequestParam(required = false, defaultValue = "60") Long seconds) {
         return ResponseEntity.ok(transactionService.calculateStatistics(seconds));
     }

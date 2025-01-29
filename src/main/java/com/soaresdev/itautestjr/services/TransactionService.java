@@ -64,7 +64,7 @@ public class TransactionService {
             throw new IllegalArgumentException("Seconds cannot be negative");
 
         DoubleSummaryStatistics statistics = transactions.stream().
-                filter(t -> Duration.between(t.getDataHour(), OffsetDateTime.now()).toSeconds() <= seconds).
+                filter(t -> Duration.between(t.getDataHour(), OffsetDateTime.now(ZoneOffset.UTC)).toSeconds() <= seconds).
                 collect(Collectors.summarizingDouble(t -> t.getAmount().doubleValue()));
 
         logger.info("Time to calculate statistics: {} seconds", (System.nanoTime() - start) / 1_000_000_000.0);
