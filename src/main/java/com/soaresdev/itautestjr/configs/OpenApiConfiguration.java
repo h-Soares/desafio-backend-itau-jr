@@ -13,7 +13,7 @@ public class OpenApiConfiguration {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .components(new Components())
-                .info(new Info().title("Test for Developer Jr. (Itau)").version("1.0.0")
+                .info(new Info().title("Test for Jr. Developer (Itau)").version("1.0.0")
                         .contact(new Contact()
                                 .name("Linkedin")
                                 .url("https://www.linkedin.com/in/hiago-soares-96840a271/")));
