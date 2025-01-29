@@ -30,7 +30,7 @@ public class TransactionController {
     })
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createTransaction(@RequestBody TransactionDto transactionDto) {
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/statistic").build().toUri();
         transactionService.createTransaction(transactionDto);
         return ResponseEntity.created(uri).build();
     }
